@@ -170,7 +170,34 @@ const openData=()=>{
         `
         display.appendChild(div) 
         }
+        const priority = document.querySelectorAll('.priority')
+         for(let p of priority){
+            if(p.innerText === 'MEDIUM')
+                p.classList.add('medium-btn')
+            if(p.innerText === 'LOW')
+                p.classList.add('low-btn')
+            }
 }
+const labels = document.querySelectorAll('.labels')
+    for(let label of labels){
+        if(label.innerText === 'ENHANCEMENT'){
+            label.classList.add('enhancement')
+            
+        }
+        if(label.innerText === 'HELP WANTED'){
+            label.classList.add('help')
+        }
+        if(label.innerText === 'GOOD FIRST ISSUE'){
+            label.classList.add('good')
+        }
+     
+    }
+    const assignee = document.querySelectorAll('.assignee')
+    for(let a of assignee){
+       if(a.innerText === ''){
+       a.innerText = 'Unassigned'
+       }
+      } 
     const newDiv = document.querySelectorAll('.issues')
      document.getElementById('totalissues').innerText = newDiv.length 
     
@@ -217,9 +244,39 @@ const closeData=()=>{
         `
         display.appendChild(div) 
        }
+        const priority = document.querySelectorAll('.priority')
+         for(let p of priority){
+            if(p.innerText === 'MEDIUM')
+                p.classList.add('medium-btn')
+            if(p.innerText === 'LOW')
+                p.classList.add('low-btn')
+            } 
+
 }
+const labels = document.querySelectorAll('.labels')
+    for(let label of labels){
+        if(label.innerText === 'ENHANCEMENT'){
+            label.classList.add('enhancement')
+            
+        }
+        if(label.innerText === 'HELP WANTED'){
+            label.classList.add('help')
+        }
+        if(label.innerText === 'GOOD FIRST ISSUE'){
+            label.classList.add('good')
+        }
+     
+    }
+    const assignee = document.querySelectorAll('.assignee')
+    for(let a of assignee){
+       if(a.innerText === ''){
+       a.innerText = 'Unassigned'
+       }
+      }
 const newDiv = document.querySelectorAll('.issues')
      document.getElementById('totalissues').innerText = newDiv.length
+
+     
         }}
 
 loadData();
