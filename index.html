@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/github-logo.png" type="image/x-icon">
+    <!-- Daisy UI CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <title>GitHub Issues Tracker</title>
+    <style>
+        .geist  {
+                font-family: "Geist", sans-serif;
+                font-optical-sizing: auto;
+                }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] geist w-full">
+    <section class="login w-10/12 md:w-4/12 mx-auto py-[30px]">
+        <div class="from bg-white px-8 shadow-2xl rounded-lg h-screen">
+        <div class="heading text-center bg-white">
+        <div class="logincontents bg-white pt-8">
+        <img class="inline-block mb-6" src="images/github-logo.png" alt="">
+        <h1 class="font-semibold text-xl md:text-2xl">GitHub Issues Tracker</h1>
+        <h3 class="text-[#64748B] text-[13px] md:text-[16px] mb-6 ">Sign in to manage your issues</h3>
+        </div>
+        </div>
+            <h1 class="font-bold text-[13px] md:text-[16px] mb-2">Username</h1>
+            <input class="w-full p-3 rounded-lg border-[#E4E4E7] mb-1.5" type="text" name="text" id="text" placeholder="Enter Username">
+            <p class="text-[#4A00FF] text-[12px] md:text-[14px] mb-4">Default: admin</p>
+            <h1 class="font-bold mb-2 text-[13px] md:text-[16px]">Password</h1>
+            <input class="w-full p-3 rounded-lg border-[#E4E4E7] mb-1.5" type="password" name="pass" id="pass" placeholder="Enter Password">
+            <p class="text-[#4A00FF] mb-6 text-[12px] md:text-[14px]">Default: admin123</p>
+            <div class="btn flex btn-primary mb-6">
+                <button class="p-4" >Sign In</button>
+            </div>
+            <div class="flex items-center my-4">
+            <div class="grow border-t border-gray-300"></div>
+             <span class="mx-3 text-sm">OR</span>
+            <div class="grow border-t border-gray-300"></div>
+            </div>
+            <div class="demo text-center pb-8 text-[11px] md:text-[16px] ">
+                <h1 class="text-[#64748B] mb-2">Demo Credentials:</h1>
+                <div class="userandpass bg-gray-50 py-6 rounded-lg">
+                    <h1><span class="font-bold">Username:</span> admin</h1>
+                    <h1><span class="font-bold">Password: </span>admin123</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
