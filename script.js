@@ -10,6 +10,7 @@ const toggolebtn = (id)=>{
 
     const display = document.getElementById('allissuedisplay')
     if(id === 'allbtn'){
+        display.innerHTML = ''
         loadData();
     }
     if(id === 'openbtn'){
@@ -133,8 +134,8 @@ const openData=()=>{
     .then(data=>issueDisplay(data.data)
     )
         const issueDisplay = (arr)=>{
-       document.getElementById('totalissues').innerText = arr.length  
        for(let issue of arr){
+        
         const labels = issue.labels
         const newLabels = labels.map(el=>`<a class="labels bg-red-200 text-red-500 border border-red-500 py-0.5 px-2 rounded-full font-semibold text-[12px]">${el.toUpperCase()}</a>`)
         const allNewLabels = newLabels.join(" ")
@@ -170,6 +171,9 @@ const openData=()=>{
         display.appendChild(div) 
         }
 }
+    const newDiv = document.querySelectorAll('.issues')
+     document.getElementById('totalissues').innerText = newDiv.length 
+    
         }}
 
 const closeData=()=>{
@@ -179,7 +183,6 @@ const closeData=()=>{
     .then(data=>issueDisplay(data.data)
     )
         const issueDisplay = (arr)=>{
-       document.getElementById('totalissues').innerText = arr.length  
        for(let issue of arr){
         const labels = issue.labels
         const newLabels = labels.map(el=>`<a class="labels bg-red-200 text-red-500 border border-red-500 py-0.5 px-2 rounded-full font-semibold text-[12px]">${el.toUpperCase()}</a>`)
@@ -215,6 +218,8 @@ const closeData=()=>{
         display.appendChild(div) 
        }
 }
+const newDiv = document.querySelectorAll('.issues')
+     document.getElementById('totalissues').innerText = newDiv.length
         }}
 
 loadData();
