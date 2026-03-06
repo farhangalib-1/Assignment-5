@@ -45,8 +45,34 @@
         <button onclick="toggolebtn('openbtn')" id="openbtn" class="headingbtn btn px-[49px]  py-3">Open</button>
         <button onclick="toggolebtn('closebtn')" id="closebtn" class="headingbtn btn px-[49px] py-3 ">Close</button>
     </section>
-    <section>
-        <h1>Hello</h1>
+    <section class="allissues w-10/12 mx-auto">
+        <div class="navbar bg-base-100 shadow-sm rounded-t-lg flex justify-between px-4">
+            <div class="leftside flex gap-2 items-center">
+            <div class="apImage bg-gray-200 p-2 rounded-full"><img src="images/Aperture.png" alt=""></div>
+            <div class="text-content">
+            <h1 class="font-bold text-xl"><span id="totalissues">0</span> Issues</h1>
+            <p class="text-[#64748B]">Track and manage your project issues</p>
+            </div>
+            </div>
+            <div class="rightside flex items-center gap-4">
+                <div class="open flex items-center gap-2">
+                    <div class="openimg">
+                    <img src="images/Ellipse 2.png" alt="">
+                    </div>
+                    <p>Open</p>
+                </div>
+                <div class="close flex items-center gap-2">
+                    <div class="closeimg">
+                    <img src="images/Ellipse 2 (1).png" alt="">
+                    </div>
+                    <p>close</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="allissuedisplay" class="allissues grid grid-cols-4 gap-3 w-10/12 mx-auto p-[27px] bg-[#FBFBFB] shadow">
+         
     </section>
     <script src="script.js"></script>
 </body>
