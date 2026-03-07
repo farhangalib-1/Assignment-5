@@ -24,6 +24,37 @@ const toggolebtn = (id)=>{
     
 }
 
+const showData = (id)=>{
+    const url =`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>details(data.data))
+
+}
+const details = (data)=>{
+    const details = document.getElementById('details')
+    const labels = data.labels
+    console.log(labels);
+    
+        // const newLabels = labels.map(el=>`<a class="labels bg-red-200 text-red-500 border border-red-500 py-0.5 px-2 rounded-full font-semibold text-[12px]">${el.toUpperCase()}</a>`)
+        // const allNewLabels = newLabels.join(" ")
+    details.innerHTML = `
+    <h1 class="font-bold text-2xl mb-2">${data.title}</h1>
+    <div class="flex items-center gap-2">
+    <p class="bg-[#00A96E] w-13 text-center rounded-full pb-1 text-[12px] text-white font-medium">${data.status}</p>
+    <div> 
+    <img  src="images/Ellipse 5.png" alt="">
+    </div>
+    <p class="text-[12px] text-[#64748B]">Open by ${data.author}</p>
+    <div> 
+    <img  src="images/Ellipse 5.png" alt="">
+    </div>
+    <p class="text-[12px] text-[#64748B]">${new Date(data.createdAt).toLocaleDateString()}</p>
+   </div>
+    `
+    document.getElementById('my_modal_1').showModal()
+}
+
 const loadData = ()=>{
     const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
     fetch(url)
@@ -34,6 +65,7 @@ const loadData = ()=>{
     const issueDisplay = (arr)=>{
        document.getElementById('totalissues').innerText = arr.length  
        for(let issue of arr){
+        
         const labels = issue.labels
         const newLabels = labels.map(el=>`<a class="labels bg-red-200 text-red-500 border border-red-500 py-0.5 px-2 rounded-full font-semibold text-[12px]">${el.toUpperCase()}</a>`)
         const allNewLabels = newLabels.join(" ")
@@ -42,7 +74,7 @@ const loadData = ()=>{
         const div = document.createElement('div')
         if(issue.status === 'open'){
              div.innerHTML = `
-        <div id='issue' class="issues bg-white rounded-lg shadow border-t-6 border-t-green-500 h-full">
+        <div id="issue" onclick="showData(${issue.id})" class="issues bg-white rounded-lg shadow border-t-6 border-t-green-500 h-full">
             <div class="topcontents p-4">
             <div class="topcontentnav flex justify-between items-center mb-3">
                 <div class="topcontentimg"><img src="images/Open-Status.png" alt=""></div>
@@ -70,7 +102,7 @@ const loadData = ()=>{
         }
         if(issue.status === 'closed'){
             div.innerHTML = `
-        <div id='issue' class="issues bg-white rounded-lg shadow border-t-6 border-t-purple-500 h-full">
+        <div id="issue" onclick="showData(${issue.id})" class="issues bg-white rounded-lg shadow border-t-6 border-t-purple-500 h-full">
             <div class="topcontents p-4">
             <div class="topcontentnav flex justify-between items-center mb-3">
                 <div class="topcontentimg"><img src="images/Closed- Status .png" alt=""></div>
@@ -93,7 +125,7 @@ const loadData = ()=>{
             </div>
         </div>
         `
-        display.appendChild(div) 
+        display.appendChild(div)
        }
 
        const priority = document.querySelectorAll('.priority')
@@ -124,7 +156,10 @@ const loadData = ()=>{
        a.innerText = 'Unassigned'
        }
       }  
-    }  
+      
+    } 
+    
+    
 }
 
 const openData=()=>{
@@ -144,7 +179,7 @@ const openData=()=>{
         const div = document.createElement('div')
         if(issue.status === 'open'){
              div.innerHTML = `
-        <div id='issue' class="issues bg-white rounded-lg shadow border-t-6 border-t-green-500 h-full">
+        <div id="issue" onclick="my_modal_1.showModal()" class="issues bg-white rounded-lg shadow border-t-6 border-t-green-500 h-full">
             <div class="topcontents p-4">
             <div class="topcontentnav flex justify-between items-center mb-3">
                 <div class="topcontentimg"><img src="images/Open-Status.png" alt=""></div>
@@ -169,7 +204,9 @@ const openData=()=>{
         </div>
         `
         display.appendChild(div) 
+        
         }
+        
         const priority = document.querySelectorAll('.priority')
          for(let p of priority){
             if(p.innerText === 'MEDIUM')
@@ -177,7 +214,9 @@ const openData=()=>{
             if(p.innerText === 'LOW')
                 p.classList.add('low-btn')
             }
+            
 }
+
 const labels = document.querySelectorAll('.labels')
     for(let label of labels){
         if(label.innerText === 'ENHANCEMENT'){
@@ -201,7 +240,8 @@ const labels = document.querySelectorAll('.labels')
     const newDiv = document.querySelectorAll('.issues')
      document.getElementById('totalissues').innerText = newDiv.length 
     
-        }}
+        }
+    }
 
 const closeData=()=>{
     const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
@@ -219,7 +259,7 @@ const closeData=()=>{
         const div = document.createElement('div')
         if(issue.status === 'closed'){
             div.innerHTML = `
-        <div id='issue' class="issues bg-white rounded-lg shadow border-t-6 border-t-purple-500 h-full">
+        <div id="issue" onclick="my_modal_1.showModal()" class="issues bg-white rounded-lg shadow border-t-6 border-t-purple-500 h-full">
             <div class="topcontents p-4">
             <div class="topcontentnav flex justify-between items-center mb-3">
                 <div class="topcontentimg"><img src="images/Closed- Status .png" alt=""></div>
