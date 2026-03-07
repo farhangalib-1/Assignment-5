@@ -21,6 +21,16 @@ const toggolebtn = (id)=>{
     }
     
 }
+const spinner =(status)=>{
+    if(status === true){
+        document.getElementById('spinner').classList.remove('hidden')
+        document.getElementById('allissuedisplay').classList.add('hidden')
+    }
+    else{
+        document.getElementById('spinner').classList.add('hidden')
+        document.getElementById('allissuedisplay').classList.remove('hidden')
+    }
+}
 const showOpenData = (id)=>{
     const url =`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
     fetch(url)
@@ -161,6 +171,7 @@ const closedetails = (data)=>{
     }
 }
 const loadData = ()=>{
+    spinner(true)
     const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
     fetch(url)
     .then(res=>res.json())
@@ -234,7 +245,7 @@ const loadData = ()=>{
         `
         display.appendChild(div)
        }
-
+    spinner(false)
        const priority = document.querySelectorAll('.priority')
          for(let p of priority){
             if(p.innerText === 'MEDIUM')
@@ -273,9 +284,11 @@ const loadData = ()=>{
     .then(res=>res.json())
     .then(data=>issueDisplay(data.data))
 }
-)   
+) 
+
 }
 const openData=()=>{
+    spinner(true)
     const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
     fetch(url)
     .then(res=>res.json())
@@ -319,6 +332,7 @@ const openData=()=>{
         display.appendChild(div) 
         
         }
+        spinner(false)
         
         const priority = document.querySelectorAll('.priority')
          for(let p of priority){
@@ -356,6 +370,7 @@ const labels = document.querySelectorAll('.labels')
         }
     }
 const closeData=()=>{
+    spinner(true)
     const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
     fetch(url)
     .then(res=>res.json())
@@ -396,6 +411,7 @@ const closeData=()=>{
         `
         display.appendChild(div) 
        }
+       spinner(false)
         const priority = document.querySelectorAll('.priority')
          for(let p of priority){
             if(p.innerText === 'MEDIUM')
