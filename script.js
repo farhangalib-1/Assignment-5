@@ -1,5 +1,3 @@
-
-
 const toggolebtn = (id)=>{
     const allBtn = document.querySelectorAll('.headingbtn')
     for(let btn of allBtn){
@@ -23,7 +21,6 @@ const toggolebtn = (id)=>{
     }
     
 }
-
 const showOpenData = (id)=>{
     const url =`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
     fetch(url)
@@ -94,9 +91,6 @@ const opendetails = (data)=>{
      
     }
 }
-
-
-
 const showCloseData = (id)=>{
     const url =`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
     fetch(url)
@@ -166,14 +160,6 @@ const closedetails = (data)=>{
      
     }
 }
-
-
-
-
-
-
-
-
 const loadData = ()=>{
     const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
     fetch(url)
@@ -286,12 +272,9 @@ const loadData = ()=>{
     fetch(url)
     .then(res=>res.json())
     .then(data=>issueDisplay(data.data))
-    
-})
-    
-    
 }
-
+)   
+}
 const openData=()=>{
     const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
     fetch(url)
@@ -372,7 +355,6 @@ const labels = document.querySelectorAll('.labels')
     
         }
     }
-
 const closeData=()=>{
     const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
     fetch(url)
@@ -448,6 +430,5 @@ const newDiv = document.querySelectorAll('.issues')
 
      
         }}
-
 loadData();
 
