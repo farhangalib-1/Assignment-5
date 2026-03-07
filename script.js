@@ -24,23 +24,21 @@ const toggolebtn = (id)=>{
     
 }
 
-const showData = (id)=>{
+const showOpenData = (id)=>{
     const url =`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
     fetch(url)
     .then(res=>res.json())
-    .then(data=>details(data.data))
+    .then(data=>opendetails(data.data))
 
 }
-const details = (data)=>{
+const opendetails = (data)=>{
     const details = document.getElementById('details')
     const labels = data.labels
-    console.log(labels);
-    
-        // const newLabels = labels.map(el=>`<a class="labels bg-red-200 text-red-500 border border-red-500 py-0.5 px-2 rounded-full font-semibold text-[12px]">${el.toUpperCase()}</a>`)
-        // const allNewLabels = newLabels.join(" ")
+        const newLabels = labels.map(el=>`<a class="labels bg-red-200 text-red-500 border border-red-500 py-0.5 px-2 rounded-full font-semibold text-[12px]">${el.toUpperCase()}</a>`)
+        const allNewLabels = newLabels.join(" ")
     details.innerHTML = `
     <h1 class="font-bold text-2xl mb-2">${data.title}</h1>
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-2 mb-6">
     <p class="bg-[#00A96E] w-13 text-center rounded-full pb-1 text-[12px] text-white font-medium">${data.status}</p>
     <div> 
     <img  src="images/Ellipse 5.png" alt="">
@@ -51,9 +49,130 @@ const details = (data)=>{
     </div>
     <p class="text-[12px] text-[#64748B]">${new Date(data.createdAt).toLocaleDateString()}</p>
    </div>
+   ${allNewLabels}
+   <p class="text-[#64748B] mt-6">${data.description}</p>
+   <div class="flex justify-between bg-gray-100 p-4 rounded-lg mt-6">
+   <div class="left">
+   <p class="text-[#64748B]">Assignee:</p>
+   <p class="assignee font-semibold">${data.assignee}</p>
+   </div>
+   <div class="left">
+   <p class="text-[#64748B]">Priority:</p>
+   <p class="priority text-center  bg-red-500 rounded-full text-white text-[12px] p-1.5 font-medium">${data.priority.toUpperCase()}</p>
+   </div>
+   </div>
     `
     document.getElementById('my_modal_1').showModal()
+     const alllabels = document.querySelectorAll('.labels')
+    for(let label of alllabels){
+        if(label.innerText === 'ENHANCEMENT'){
+            label.classList.add('enhancement')
+            
+        }
+        if(label.innerText === 'HELP WANTED'){
+            label.classList.add('help')
+        }
+        if(label.innerText === 'GOOD FIRST ISSUE'){
+            label.classList.add('good')
+        }
+         const priority = document.querySelectorAll('.priority')
+         console.log();
+         
+         for(let p of priority){
+            if(p.innerText === 'MEDIUM')
+                p.classList.add('medium')
+            if(p.innerText === 'LOW')
+                p.classList.add('low')
+            }
+
+            const assignee = document.querySelectorAll('.assignee')
+    for(let a of assignee){
+       if(a.innerText === ''){
+       a.innerText = 'Unassigned'
+       }
+      }
+     
+    }
 }
+
+
+
+const showCloseData = (id)=>{
+    const url =`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>closedetails(data.data))
+
+}
+const closedetails = (data)=>{
+    const details = document.getElementById('details')
+    const labels = data.labels
+        const newLabels = labels.map(el=>`<a class="labels bg-red-200 text-red-500 border border-red-500 py-0.5 px-2 rounded-full font-semibold text-[12px]">${el.toUpperCase()}</a>`)
+        const allNewLabels = newLabels.join(" ")
+    details.innerHTML = `
+    <h1 class="font-bold text-2xl mb-2">${data.title}</h1>
+    <div class="flex items-center gap-2 mb-6">
+    <p class="bg-[#A855F7] w-13 text-center rounded-full pb-1 text-[12px] text-white font-medium">${data.status}</p>
+    <div> 
+    <img  src="images/Ellipse 5.png" alt="">
+    </div>
+    <p class="text-[12px] text-[#64748B]">Open by ${data.author}</p>
+    <div> 
+    <img  src="images/Ellipse 5.png" alt="">
+    </div>
+    <p class="text-[12px] text-[#64748B]">${new Date(data.createdAt).toLocaleDateString()}</p>
+   </div>
+   ${allNewLabels}
+   <p class="text-[#64748B] mt-6">${data.description}</p>
+   <div class="flex justify-between bg-gray-100 p-4 rounded-lg mt-6">
+   <div class="left">
+   <p class="text-[#64748B]">Assignee:</p>
+   <p class="font-semibold">${data.assignee}</p>
+   </div>
+   <div class="left">
+   <p class="text-[#64748B]">Priority:</p>
+   <p class="assignee priority text-center  bg-red-500 rounded-full text-white text-[12px] p-1.5 font-medium">${data.priority.toUpperCase()}</p>
+   </div>
+   </div>
+    `
+    document.getElementById('my_modal_1').showModal()
+     const alllabels = document.querySelectorAll('.labels')
+    for(let label of alllabels){
+        if(label.innerText === 'ENHANCEMENT'){
+            label.classList.add('enhancement')
+            
+        }
+        if(label.innerText === 'HELP WANTED'){
+            label.classList.add('help')
+        }
+        if(label.innerText === 'GOOD FIRST ISSUE'){
+            label.classList.add('good')
+        }
+         const priority = document.querySelectorAll('.priority')
+         console.log();
+         
+         for(let p of priority){
+            if(p.innerText === 'MEDIUM')
+                p.classList.add('medium')
+            if(p.innerText === 'LOW')
+                p.classList.add('low')
+            }
+            const assignee = document.querySelectorAll('.assignee')
+    for(let a of assignee){
+       if(a.innerText === ''){
+       a.innerText = 'Unassigned'
+       }
+      }
+     
+    }
+}
+
+
+
+
+
+
+
 
 const loadData = ()=>{
     const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
@@ -74,7 +193,7 @@ const loadData = ()=>{
         const div = document.createElement('div')
         if(issue.status === 'open'){
              div.innerHTML = `
-        <div id="issue" onclick="showData(${issue.id})" class="issues bg-white rounded-lg shadow border-t-6 border-t-green-500 h-full">
+        <div id="issue" onclick="showOpenData(${issue.id})" class="issues bg-white rounded-lg shadow border-t-6 border-t-green-500 h-full">
             <div class="topcontents p-4">
             <div class="topcontentnav flex justify-between items-center mb-3">
                 <div class="topcontentimg"><img src="images/Open-Status.png" alt=""></div>
@@ -102,7 +221,7 @@ const loadData = ()=>{
         }
         if(issue.status === 'closed'){
             div.innerHTML = `
-        <div id="issue" onclick="showData(${issue.id})" class="issues bg-white rounded-lg shadow border-t-6 border-t-purple-500 h-full">
+        <div id="issue" onclick="showCloseData(${issue.id})" class="issues bg-white rounded-lg shadow border-t-6 border-t-purple-500 h-full">
             <div class="topcontents p-4">
             <div class="topcontentnav flex justify-between items-center mb-3">
                 <div class="topcontentimg"><img src="images/Closed- Status .png" alt=""></div>
@@ -179,7 +298,7 @@ const openData=()=>{
         const div = document.createElement('div')
         if(issue.status === 'open'){
              div.innerHTML = `
-        <div id="issue" onclick="my_modal_1.showModal()" class="issues bg-white rounded-lg shadow border-t-6 border-t-green-500 h-full">
+        <div id="issue" onclick="showOpenData(${issue.id})" class="issues bg-white rounded-lg shadow border-t-6 border-t-green-500 h-full">
             <div class="topcontents p-4">
             <div class="topcontentnav flex justify-between items-center mb-3">
                 <div class="topcontentimg"><img src="images/Open-Status.png" alt=""></div>
@@ -259,7 +378,7 @@ const closeData=()=>{
         const div = document.createElement('div')
         if(issue.status === 'closed'){
             div.innerHTML = `
-        <div id="issue" onclick="my_modal_1.showModal()" class="issues bg-white rounded-lg shadow border-t-6 border-t-purple-500 h-full">
+        <div id="issue" onclick="showCloseData(${issue.id})" class="issues bg-white rounded-lg shadow border-t-6 border-t-purple-500 h-full">
             <div class="topcontents p-4">
             <div class="topcontentnav flex justify-between items-center mb-3">
                 <div class="topcontentimg"><img src="images/Closed- Status .png" alt=""></div>
