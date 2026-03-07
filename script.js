@@ -182,7 +182,9 @@ const loadData = ()=>{
     )
 
     const issueDisplay = (arr)=>{
-       document.getElementById('totalissues').innerText = arr.length  
+       document.getElementById('totalissues').innerText = arr.length 
+       const allIssues = document.getElementById('allissuedisplay')
+       allIssues.innerHTML= ' '  
        for(let issue of arr){
         
         const labels = issue.labels
@@ -277,6 +279,15 @@ const loadData = ()=>{
       }  
       
     } 
+
+    document.getElementById('searchbtn').addEventListener('click',()=>{
+    const searchValue = document.getElementById('search').value
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>issueDisplay(data.data))
+    
+})
     
     
 }
@@ -439,3 +450,4 @@ const newDiv = document.querySelectorAll('.issues')
         }}
 
 loadData();
+
